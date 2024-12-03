@@ -4,28 +4,17 @@ import { IoMoonSharp } from "react-icons/io5";
 import { themeToggle } from "../redux/Theme/themeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useSearchUserQuery } from "../redux/features/userApi";
 
-const Navbar = ({setFilteredResults, searchTerm, setSearchTerm}) => {
+const Navbar = () => {
   const theme = useSelector((state) => state.themes.theme);
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const {data : results} = useSearchUserQuery(searchTerm, {skip : !searchTerm})
 
-  const [searchData, setSearchData] = useState("")
 
   const themeChange = () => {
     dispatch(themeToggle());
   };
 
-  const handleSearch = (e) => {
-    const value = e.target.value
-    setSearchTerm = value
-    if(results)
-    {
-      setFilteredResults(results)
-    }
-  }
 
   return (
     <header>
@@ -61,8 +50,7 @@ const Navbar = ({setFilteredResults, searchTerm, setSearchTerm}) => {
                 className={`${theme === "light" ? "rounded-full px-5 py-2 text-gray-700 bg-white shadow-md outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 border border-gray-300 w-72" : "rounded-full px-5 py-2 text-gray-200 bg-gray-800 shadow-md outline-none focus:ring-2 focus:ring-blue-400 border border-gray-300 w-72"}`}
                 type="text"
                 placeholder="Search for something..."
-                value={searchTerm}
-                onChange={handleSearch}
+                
               />
             </li>
           </ul>

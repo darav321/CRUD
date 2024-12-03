@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const Home = ({ searchTerm}) => {
+const Home = () => {
   const { data: users = [] } = useGetBooksQuery();
   const theme = useSelector((state) => state.themes.theme);
   const navigate = useNavigate();
@@ -68,12 +68,6 @@ const Home = ({ searchTerm}) => {
       <div className="w-4/5">
         {users.length > 0 ? (
           users
-          .filter((user)=>{
-            const searchQuery = searchTerm.toLowerCase()
-            return (
-              user.name.toLowerCase().includes(searchQuery)
-            )
-          })
             .map((item) => (
               <div
                 key={item._id}

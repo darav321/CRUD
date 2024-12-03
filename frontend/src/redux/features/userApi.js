@@ -36,10 +36,7 @@ const usersApi = createApi({
             }),
             invalidatesTags : ["Users"]
         }),
-        searchUser : builder.query({
-            query : `/search?query=${query}`,
-            providesTags : ["Users"]
-        })
+
     })
 })
 
